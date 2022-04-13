@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,9 +20,11 @@
   },
   "homepage": "https://github.com/Herbrant/fakechain#readme",
   "devDependencies": {
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15"
   },
   "dependencies": {
+    "express": "^4.17.3",
     "hex-to-binary": "^1.0.1"
   }
 }
