@@ -1,0 +1,23 @@
+{
+  "name": "fakechain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Herbrant/fakechain.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Herbrant/fakechain/issues"
+  },
+  "homepage": "https://github.com/Herbrant/fakechain#readme",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
