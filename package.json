@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/Herbrant/fakechain#readme",
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^27.5.1"
   },
   "dependencies": {
     "hex-to-binary": "^1.0.1"
