@@ -1,14 +1,22 @@
 const Block = require("./block");
 const cryptoHash = require('./crypto-hash');
-const GENESIS_DATA = require('./config')
+const GENESIS_DATA = require('./config');
 
 describe('Block', () => {
 	const timestamp = 'a-date';
 	const lastHash = 'foo-hash';
 	const hash = 'bar-hash';
+	const nonce = 0;
+	const difficulty = 1;
 	const data = ['blockchain', 'data'];
 
-	const block = new Block({timestamp, lastHash: lastHash, hash: hash, data: data});
+	const block = new Block({
+		timestamp: timestamp, 
+		lastHash: lastHash, 
+		hash: hash,
+		nonce: nonce,
+		difficulty: difficulty,
+		data: data});
 
 	it('has a timestamp, lastHash, hash and data property', () => {
 		expect(block.timestamp).toEqual(timestamp);
@@ -52,7 +60,20 @@ describe('Block', () => {
 
 		it('creates a SHA-256 `hash` based on the proper inputs', () => {
 			expect(minedBlock.hash)
-				.toEqual(cryptoHash(minedBlock.timestamp, lastBlock.hash, data));
+				.toEqual(
+					cryptoHash(
+						minedBlock.timestamp, 
+						lastBlock.hash, 
+						data, 
+						minedBlock.nonce, 
+						minedBlock.difficulty
+					)
+				);
+		});
+
+		it('sets a `hash` that matches the difficulty criteria', () => {
+			expect(minedBlock.hash.substring(0, minedBlock.difficulty))
+				.toEqual('0'.repeat(minedBlock.difficulty));
 		});
 	});
 });
