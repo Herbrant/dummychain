@@ -30,17 +30,24 @@ class PubSub {
 		}
 	}
 
+	subscribeToChannel(channel) {
+		this.subscriber.subscribe(
+			channel, 
+			(message, channel) => this.handleMessage(message, channel)
+		);
+	}
+
 	subscribeToChannels() {
 		Object.values(CHANNELS).forEach(channel => {
-			this.subscriber.subscribe(
-				channel, 
-				(message, channel) => this.handleMessage(message, channel)
-			);
+			this.subscribeToChannel(channel);
 		});
 	}
 
 	publish({ channel, message }) {
-		this.publisher.publish(channel, message);
+		this.subscriber.unsubscribe(channel);
+		this.publisher.publish(channel, message, () => {
+			this.subscribeToChannel(channel);
+		});	
 	}
 
 	broadcastChain() {
