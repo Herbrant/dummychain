@@ -45,7 +45,6 @@ class Blockchain {
 		if (!Blockchain.isValidChain(chain))
 			return;
 		
-		console.log('replacing chain with', chain);
 		this.chain = chain;
 	}
 }

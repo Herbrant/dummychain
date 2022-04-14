@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest --watchAll",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "npm run start-redis && nodemon index.js",
+    "dev-peer": "cross-env GENERATE_PEER_PORT='true' nodemon && index.js",
+    "start-redis": "redis-server --daemonize yes"
   },
   "repository": {
     "type": "git",
@@ -20,12 +22,15 @@
   },
   "homepage": "https://github.com/Herbrant/fakechain#readme",
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
     "express": "^4.17.3",
-    "hex-to-binary": "^1.0.1"
+    "hex-to-binary": "^1.0.1",
+    "redis": "^4.0.6",
+    "request": "^2.88.2"
   }
 }
